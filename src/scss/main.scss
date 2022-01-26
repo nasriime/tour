@@ -3,3 +3,27 @@ body {
   height: 100%;
   background-color: #ecf1f5;
 }
+
+.wrapper{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.item{
+  display: flex;
+}
+.item__left{
+
+}
+
+.item__right--duration{
+  display: flex;
+}
+
+.item__right--period{
+  display: flex;
+}
+
+.label{
+  display: inline-block;
+  min-width: 110px;
+}

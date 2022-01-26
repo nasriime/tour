@@ -11,16 +11,18 @@ var fetchData = () => {
   })
   .then(results=>{
     results.map(function(result) {
-      const is_primary_image = result.images.filter(image=> image.is_primary === true);
+      const { cities, dates, description, images, length, length_type, 
+        name, operator_name, rating, reviews } = result;
+      const is_primary_image = images.filter(image=> image.is_primary === true);
       const container = document.createElement('div');
-      container.class = 'list-item';
+      container.className = 'list-item';
 
       let html = "";
       html += '<div id="" class="">';
       html += '<div class="">';
       html += '<ul class="">';
       html += `<img src="${is_primary_image.length > 0 ? is_primary_image[0]['url'] : ""}">`;
-      html += `<li class="">${result.name} <a href="javascript:void(0)"> <span class=""></span> </a> </li>`;
+      html += `<li class="">${name} <a href="javascript:void(0)"> <span class=""></span> </a> </li>`;
       html += '</ul></div></div></div>';
   
       container.innerHTML = html;
