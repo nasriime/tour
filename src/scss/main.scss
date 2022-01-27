@@ -2,18 +2,23 @@ html,
 body {
   height: 100%;
   background-color: #ecf1f5;
+  font-family: Helvetica, Arial, FreeSans, sans-serif;
 }
 
 .wrapper{
+  display: flex;
+  flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .item{
   display: flex;
+  align-self: center;
   box-shadow: 0 0 12px rgb(0 0 0 / 15%);
   min-height: 285px;
   background: #fff;
+  padding: 3px;
 }
 
 .item__left{
@@ -25,7 +30,7 @@ body {
     right: 10px;
   }
   .fa-heart{
-    color: rgba(0, 0, 0, 0.4);
+    color: #fff;
     cursor: pointer;
   }
 }
@@ -34,9 +39,6 @@ body {
   margin: 0px 20px 0px;
   max-width: 500px;
 
-  &--review{
-    
-  }
   &--info{
     border-top: 1px solid #000;
     padding-top: 15px;
@@ -51,17 +53,58 @@ body {
 }
 
 .item__right{
+  position: relative;
+  width: 200px;
+  margin-right: 8px;
+  margin-left: 8px;
+  padding-top: 24px;
+
+  &--saving{
+    width: 0;
+    height: 0;
+    border-color: transparent #e74c3c transparent transparent;
+    border-style: solid;
+    border-width: 0 45px 45px 0;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    cursor: help;
+
+    div{
+      text-align: center;
+      top: 7px;
+      left: 8px;
+      position: relative;
+      width: 45px;
+      color: #fff;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      font-size: 12px;
+      }
+  }
+
   &--duration{
     display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    div{
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+    }
   }
   &--period{
     display: flex;
   }
   &--btn{
     background: #f39a2d;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
+    color: #fff;
+    width: 100%;
+    border: 1px solid #f39a2d;
+    padding: 10.5px 8px;
+    font-weight: 700;
+    border-radius: 3px;
+    cursor: pointer;
     span{
       margin-right: 5px;
     }
