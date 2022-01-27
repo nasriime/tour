@@ -19,10 +19,14 @@ body {
   min-height: 285px;
   background: #fff;
   padding: 3px;
+  margin-bottom: 30px;
 }
 
 .item__left{
   position: relative;
+  img{
+    width: 350px;
+  }
 
   &--like{
     position: absolute;
