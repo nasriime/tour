@@ -5,11 +5,18 @@ body {
   font-family: Helvetica, Arial, FreeSans, sans-serif;
 }
 
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filters{
+  text-align: right;
+}
+
 #wrapper{
   display: flex;
   flex-direction: column;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .item{
