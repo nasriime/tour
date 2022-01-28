@@ -7,11 +7,37 @@ body {
 
 .container{
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 50px auto;
 }
 
 .filters{
   text-align: right;
+
+  .filters--wrapper{
+    position:relative;
+    &:before {
+      content: "\25AE";  
+      font-family: FontAwesome;
+      right:7px;
+      position:absolute;
+      top:0;
+   }
+  }
+
+  select{
+    padding: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  #filterBy{
+    width: 124px;
+  }
+
+  #sortBy{
+    width: 146px;
+  }
 }
 
 #wrapper{
