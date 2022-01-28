@@ -1,6 +1,11 @@
-$('#hideBtn').click(function() {
-  console.log('Hello world');
+$('#filterBy').on('change', (event)=> {
+  console.log(event.target.value);
 });
+
+$('#sortBy').on('change', (event)=> {
+  console.log(event.target.value);
+});
+
 const wrapper = document.getElementById('wrapper');
 const url = 'https://mocki.io/v1/11356aa2-6371-41d4-9d49-77a5e9e9924f';
 
