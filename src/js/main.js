@@ -90,8 +90,12 @@ const getList = (result)=>{
   return html;
 }
 
-const toursLoop =(sortedTours)=>{
-  tours = sortedTours ? sortedTours : tours;
+const toursLoop = (sortedTours) => {
+  tours = sortedTours ? sortedTours : tours.sort((a, b)=>{
+    var x = a.dates[0] && a.dates[0]["eur"]
+    var y = b.dates[0] && b.dates[0]["eur"]
+    return x>y ? -1 : x<y ? 1 : 0;
+  });
   tours.map((result)=> {
     const item = document.createElement('li');
     item.className = 'item';
@@ -138,6 +142,8 @@ $('#sortBy').on('change', (event)=> {
         var y = b.dates[0] && b.dates[0]["eur"]
         return x>y ? -1 : x<y ? 1 : 0;
       });
+      wrapper.innerHTML = "";
+      toursLoop(sortedTours);
       break;
     case "2":
       sortedTours = tours.sort((a, b)=>{
@@ -145,16 +151,22 @@ $('#sortBy').on('change', (event)=> {
         var y = b.dates[0] && b.dates[0]["eur"]
         return x>y ? 1 : x<y ? -1 : 0;
       });
+      wrapper.innerHTML = "";
+      toursLoop(sortedTours);
       break;
     case "3":
       sortedTours = tours.sort((a, b)=>{
-        return a.length - b.length
+        return b.length - a.length
       });
+      wrapper.innerHTML = "";
+      toursLoop(sortedTours);
       break;
     case "4":
       sortedTours = tours.sort((a, b)=>{
         return a.length - b.length
       });
+      wrapper.innerHTML = "";
+      toursLoop(sortedTours);
       break;
   }
 });
