@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 $('#filterBy').on('change', (event)=> {
   console.log(event.target.value);
 });
@@ -22,7 +24,9 @@ const getList = (result)=>{
    is_primary_image[0]['url'] : "http://placehold.it/232x170";
   const first_availability = dates[0]["availability"];
   const last_availability = dates[dates.length-1]["availability"];
-  
+  const start_Date = moment(dates[0]["start"]).format('D MMM YYYY');
+  const end_Date = moment(dates[dates.length - 1]["start"]).format('D MMM YYYY');
+
   let html = `
     <!-- left part -->
     <div class="item__left">
@@ -49,7 +53,7 @@ const getList = (result)=>{
         </div>
         <div>
           <span class="item__middle--info-label">starts/ends in</span>
-          <span>london/london</span>
+          <span>${cities[0]["name"]}/${cities[cities.length-1]["name"]}</span>
         </div>
         <div>
           <span class="item__middle--info-label">operator</span>
@@ -74,11 +78,11 @@ const getList = (result)=>{
       </div>
       <div class="item__right--period">
         <div class="item__right--availability-from">
-          <h6>1 Nov 2019</h6>
+          <h6>${start_Date}</h6>
           <h6>${first_availability}+ sapces left</h6>
         </div>
         <div class="item__right--availability-to">
-          <h6>2 Nov 2019</h6>
+          <h6>${end_Date}</h6>
           <h6>${last_availability}+ sapces left</h6>
         </div>
       </div>
