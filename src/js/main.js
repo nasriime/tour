@@ -90,7 +90,8 @@ const getList = (result)=>{
   return html;
 }
 
-const toursLoop =()=>{
+const toursLoop =(sortedTours)=>{
+  tours = sortedTours ? sortedTours : tours;
   tours.map((result)=> {
     const item = document.createElement('li');
     item.className = 'item';
@@ -116,40 +117,44 @@ const fetchData = () => {
 
 fetchData();
 
-
 /* Events */
 $('#filterBy').on('change', (event)=> {
-  // console.log(event.target.value);
   const val = event.target.value;
   const dateVal = moment(val).format('YYYY-MM');
-  // console.log('date', date);
   const filteredTours = [];
   tours.forEach(tour=> {
     const filtered = tour.dates.filter(date=> date.start.includes(dateVal));
     filtered.length > 0 && filteredTours.push(tour)
   })
-  console.log('filteredTours', filteredTours);
 });
 
 $('#sortBy').on('change', (event)=> {
   const val = event.target.value;
+  let sortedTours = [];
   switch (val) {
     case "1":
-      tours = tours.sort((a, b)=>{
-        return a.dates[0] && a.dates[0]["eur"] && a.dates[0]["eur"] - b.dates[0] && b.dates[0]["eur"] && b.dates[0]["eur"] 
+      sortedTours = tours.sort((a, b)=>{
+        var x = a.dates[0] && a.dates[0]["eur"]
+        var y = b.dates[0] && b.dates[0]["eur"]
+        return x>y ? -1 : x<y ? 1 : 0;
       });
-      console.log('tours', tours)
-      toursLoop();
       break;
     case "2":
-      tours = tours.sort((a, b)=>{
-        return b.dates[0] && b.dates[0]["eur"] && b.dates[0]["eur"] - a.dates[0] && a.dates[0]["eur"] && a.dates[0]["eur"]
+      sortedTours = tours.sort((a, b)=>{
+        var x = a.dates[0] && a.dates[0]["eur"]
+        var y = b.dates[0] && b.dates[0]["eur"]
+        return x>y ? 1 : x<y ? -1 : 0;
       });
-      toursLoop();
       break;
     case "3":
-        break;
+      sortedTours = tours.sort((a, b)=>{
+        return a.length - b.length
+      });
+      break;
     case "4":
+      sortedTours = tours.sort((a, b)=>{
+        return a.length - b.length
+      });
       break;
   }
 });
