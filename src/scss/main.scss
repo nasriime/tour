@@ -34,6 +34,7 @@ body {
     -moz-appearance: none;
     appearance: none;
     border: 1px solid #818d99;
+    cursor: pointer;
   }
 
   #filterBy{
@@ -110,7 +111,6 @@ body {
     position: absolute;
     right: 1px;
     top: 1px;
-    cursor: help;
 
     div{
       text-align: center;

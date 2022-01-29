@@ -1,12 +1,6 @@
 import moment from 'moment';
 
-$('#filterBy').on('change', (event)=> {
-  console.log(event.target.value);
-});
-
-$('#sortBy').on('change', (event)=> {
-  console.log(event.target.value);
-});
+let tours = [];
 
 const wrapper = document.getElementById('wrapper');
 const url = 'https://mocki.io/v1/11356aa2-6371-41d4-9d49-77a5e9e9924f';
@@ -22,10 +16,10 @@ const getList = (result)=>{
   const is_primary_image = images.filter(image=> image.is_primary === true);
   const image = is_primary_image.length > 0 && is_primary_image[0]['url'] ?
    is_primary_image[0]['url'] : "http://placehold.it/232x170";
-  const first_availability = dates[0]["availability"];
-  const last_availability = dates[dates.length-1]["availability"];
-  const start_Date = moment(dates[0]["start"]).format('D MMM YYYY');
-  const end_Date = moment(dates[dates.length - 1]["start"]).format('D MMM YYYY');
+  const first_availability = dates[0] && dates[0]["availability"] && dates[0]["availability"];
+  const last_availability = dates[dates.length-1] && dates[dates.length-1]["availability"] && dates[dates.length-1]["availability"];
+  const start_Date = moment(dates[0] && dates[0]["start"]).format('D MMM YYYY');
+  const end_Date = moment(dates[dates.length - 1] && dates[dates.length - 1]["start"]).format('D MMM YYYY');
 
   let html = `
     <!-- left part -->
@@ -45,7 +39,7 @@ const getList = (result)=>{
         <span>${reviews}</span>
         <span>reviews</span>
       </div>
-      <blockquote class="item__middle--review">${description}</blockquote>
+      <blockquote class="item__middle--review">${description.slice(0,100)}...</blockquote>
       <div class="item__middle--info">
         <div>
           <span class="item__middle--info-label">Destinations</span>
@@ -63,8 +57,10 @@ const getList = (result)=>{
     </div>
     <!-- right part -->
     <div class="item__right">
-      <div class="item__right--saving" style="display: ${dates[0]["discount"] ? "" : 'none'}">
-        <div>-${dates[0]["discount"]}</div>
+      <div 
+        class="item__right--saving" 
+        style="display: ${dates[0] && dates[0]["discount"] ? "" : 'none'}">
+        <div>-${dates[0] && dates[0]["discount"]}</div>
       </div>
       <div class="item__right--duration">
         <div class="item__right--days">
@@ -73,7 +69,7 @@ const getList = (result)=>{
         </div>
         <div class="item__right--price">
           <span>From</span>
-          <span>€${dates[0]["eur"]}</span>
+          <span>€${dates[0] && dates[0]["eur"] || 1}</span>
         </div>
       </div>
       <div class="item__right--period">
@@ -94,20 +90,24 @@ const getList = (result)=>{
   return html;
 }
 
+const toursLoop =()=>{
+  tours.map((result)=> {
+    const item = document.createElement('li');
+    item.className = 'item';
+    const html = getList(result);
+    item.innerHTML = html;
+    wrapper.append(item);
+  });
+}
+
 const fetchData = () => {
   fetch(url)
   .then((data)=> {
     return data.json()
   })
   .then(results=>{
-    results.map((result)=> {
-      const item = document.createElement('li');
-      item.className = 'item';
-
-      const html = getList(result);
-      item.innerHTML = html;
-      wrapper.append(item);
-    });
+    tours = results;
+    toursLoop();
   })
   .catch((error)=> {
     console.log(error);
@@ -115,3 +115,29 @@ const fetchData = () => {
 }
 
 fetchData();
+
+
+/* Events */
+$('#filterBy').on('change', (event)=> {
+  console.log(event.target.value);
+});
+
+$('#sortBy').on('change', (event)=> {
+  console.log(event.target.value);
+  const val = event.target.value;
+  switch (val) {
+    case "1":
+      tours = tours.sort((a, b)=>{
+        return a.dates[0] && a.dates[0]["eur"] && a.dates[0]["eur"] - b.dates[0] && b.dates[0]["eur"] && b.dates[0]["eur"] 
+      });
+      console.log('tours', tours)
+      toursLoop();
+      break;
+    case "2":
+      tours = tours.sort((a, b)=>{
+        return b.dates[0] && b.dates[0]["eur"] && b.dates[0]["eur"] - a.dates[0] && a.dates[0]["eur"] && a.dates[0]["eur"]
+      });
+      toursLoop();
+      break;
+  }
+});
