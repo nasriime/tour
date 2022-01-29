@@ -13,32 +13,37 @@ const url = 'https://mocki.io/v1/11356aa2-6371-41d4-9d49-77a5e9e9924f';
 const getList = (result)=>{
   const { cities, dates, description, images, length, length_type, 
     name, operator_name, rating, reviews } = result;
+
+  const destinations = cities.map(city=> city.name); 
+  const showCities = destinations.slice(0,2);
+  const moreCities = destinations.length > 2 ? ` +${destinations.length - 2} more` : ' ';
   const is_primary_image = images.filter(image=> image.is_primary === true);
+  const image = is_primary_image.length > 0 && is_primary_image[0]['url'] ?
+   is_primary_image[0]['url'] : "http://placehold.it/232x170";
+
   let html = `
     <!-- left part -->
     <div class="item__left">
-      <img src="${is_primary_image.length > 0 ? is_primary_image[0]['url'] : ""}" alt="">
+      <img src="${image}" alt="">
       <i class="far fa-heart item__left--like"></i>
     </div>
     <!-- middle part -->
     <div class="item__middle">
-      <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate, magnam.</h2>
+      <h2>${name}</h2>
       <div class="item__middle--rating">
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
-        <span>2</span>
+        <span>${reviews}</span>
         <span>reviews</span>
       </div>
-      <blockquote class="item__middle--review">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, quos!
-      </blockquote>
+      <blockquote class="item__middle--review">${description}</blockquote>
       <div class="item__middle--info">
         <div>
           <span class="item__middle--info-label">Destinations</span>
-          <span>Rome</span>
+          <span>${showCities}${moreCities}</span>
         </div>
         <div>
           <span class="item__middle--info-label">starts/ends in</span>
@@ -46,7 +51,7 @@ const getList = (result)=>{
         </div>
         <div>
           <span class="item__middle--info-label">operator</span>
-          <span>expat explore travel</span>
+          <span>${operator_name}</span>
         </div>
       </div>
     </div>

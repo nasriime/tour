@@ -1,3 +1,5 @@
+@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
+
 html,
 body {
   height: 100%;
@@ -16,11 +18,13 @@ body {
   .filters--wrapper{
     position:relative;
     &:before {
-      content: "\25AE";  
-      font-family: FontAwesome;
-      right:7px;
+      content: "\f078";  
+      font-family: "Font Awesome 5 Free";
+      right:10px;
       position:absolute;
       top:0;
+      font-weight:700;
+      color: #818d99;
    }
   }
 
@@ -29,6 +33,7 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    border: 1px solid #818d99;
   }
 
   #filterBy{
