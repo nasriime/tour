@@ -20,7 +20,9 @@ const getList = (result)=>{
   const is_primary_image = images.filter(image=> image.is_primary === true);
   const image = is_primary_image.length > 0 && is_primary_image[0]['url'] ?
    is_primary_image[0]['url'] : "http://placehold.it/232x170";
-
+  const first_availability = dates[0]["availability"];
+  const last_availability = dates[dates.length-1]["availability"];
+  
   let html = `
     <!-- left part -->
     <div class="item__left">
@@ -34,8 +36,8 @@ const getList = (result)=>{
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+        <i class="far fa-star"></i>
         <span>${reviews}</span>
         <span>reviews</span>
       </div>
@@ -57,27 +59,27 @@ const getList = (result)=>{
     </div>
     <!-- right part -->
     <div class="item__right">
-      <div class="item__right--saving">
-        <div>-15%</div>
+      <div class="item__right--saving" style="display: ${dates[0]["discount"] ? "" : 'none'}">
+        <div>-${dates[0]["discount"]}</div>
       </div>
       <div class="item__right--duration">
         <div class="item__right--days">
           <span>Duration</span>
-          <span>7 days</span>
+          <span>${length} days</span>
         </div>
         <div class="item__right--price">
           <span>From</span>
-          <span>2,134</span>
+          <span>€${dates[0]["eur"]}</span>
         </div>
       </div>
       <div class="item__right--period">
         <div class="item__right--availability-from">
           <h6>1 Nov 2019</h6>
-          <h6>10+ sapces left</h6>
+          <h6>${first_availability}+ sapces left</h6>
         </div>
         <div class="item__right--availability-to">
           <h6>2 Nov 2019</h6>
-          <h6>10+ sapces left</h6>
+          <h6>${last_availability}+ sapces left</h6>
         </div>
       </div>
       <button class="item__right--btn">
