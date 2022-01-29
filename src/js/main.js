@@ -119,11 +119,19 @@ fetchData();
 
 /* Events */
 $('#filterBy').on('change', (event)=> {
-  console.log(event.target.value);
+  // console.log(event.target.value);
+  const val = event.target.value;
+  const dateVal = moment(val).format('YYYY-MM');
+  // console.log('date', date);
+  const filteredTours = [];
+  tours.forEach(tour=> {
+    const filtered = tour.dates.filter(date=> date.start.includes(dateVal));
+    filtered.length > 0 && filteredTours.push(tour)
+  })
+  console.log('filteredTours', filteredTours);
 });
 
 $('#sortBy').on('change', (event)=> {
-  console.log(event.target.value);
   const val = event.target.value;
   switch (val) {
     case "1":
@@ -138,6 +146,10 @@ $('#sortBy').on('change', (event)=> {
         return b.dates[0] && b.dates[0]["eur"] && b.dates[0]["eur"] - a.dates[0] && a.dates[0]["eur"] && a.dates[0]["eur"]
       });
       toursLoop();
+      break;
+    case "3":
+        break;
+    case "4":
       break;
   }
 });
