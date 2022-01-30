@@ -37,7 +37,9 @@ body {
     -moz-appearance: none;
     appearance: none;
     border: 1px solid #818d99;
+    border-radius: 3px;
     cursor: pointer;
+    outline: 0;
   }
 
   #filterBy{
@@ -50,16 +52,15 @@ body {
 }
 
 #wrapper{
-  display: flex;
-  flex-direction: column;
   padding: 0;
 }
 
 .item{
   display: flex;
+  flex-wrap: wrap;
   align-self: center;
   box-shadow: 0 0 12px rgba(0, 0, 0 , 0.15);
-  min-height: 244px;
+  min-height: 229px;
   background: #fff;
   padding: 3px;
   margin-bottom: 30px;
@@ -68,7 +69,8 @@ body {
 .item__left{
   position: relative;
   img{
-    width: 350px;
+    width: 250px;
+    height: 225px;
   }
 
   &--like{
@@ -241,6 +243,7 @@ body {
     }
   }
   &--btn{
+    position:relative;
     background: #f39a2d;
     color: #fff;
     width: 100%;
@@ -250,6 +253,12 @@ body {
     border-radius: 3px;
     margin-top: 20px;
     cursor: pointer;
+
+    i{
+      position: absolute;
+      top: 12px;
+      right: 13px;
+    }
     span{
       margin-right: 5px;
     }
