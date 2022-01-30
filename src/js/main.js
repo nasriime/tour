@@ -1,10 +1,37 @@
 import moment from 'moment';
 
 let tours = [];
-
 const wrapper = document.getElementById('wrapper');
 const url = 'https://mocki.io/v1/11356aa2-6371-41d4-9d49-77a5e9e9924f';
 
+
+const createRatingStars = (rating)=>{
+  let ratingDiv = ``;
+  if(!rating){
+    Array.from({length: 5}, () => {
+      ratingDiv += `<i class="far fa-star"></i>`;
+    });
+  }else{
+    const isFloat = rating % 1 !== 0;
+    const numberOfStars = isFloat ? Math.ceil(rating) : rating;
+
+    Array.from({length: numberOfStars}, () => {
+      ratingDiv += `<i class="fas fa-star"></i>`;
+    });
+    
+    if (isFloat) {
+      ratingDiv += `<i class="fas fa-star-half-alt"></i>`;
+    }
+  
+    if (numberOfStars < 5) {
+      const remainingStars = 5 - Math.ceil(rating);
+      Array.from({length: remainingStars}, () => {
+        ratingDiv += `<i class="far fa-star"></i>`;
+      });
+    } 
+  }
+  return ratingDiv;
+}
 
 const getList = (result, idx)=>{
   const { cities, dates, description, images, length, length_type, 
@@ -20,10 +47,7 @@ const getList = (result, idx)=>{
   const last_availability = dates[dates.length-1] && dates[dates.length-1]["availability"] && dates[dates.length-1]["availability"];
   const start_Date = moment(dates[0] && dates[0]["start"]).format('D MMM YYYY');
   const end_Date = moment(dates[dates.length - 1] && dates[dates.length - 1]["start"]).format('D MMM YYYY');
-  // const isFloat = rating % 1 !== 0
-  // const numberOfStars = isFloat ? Math.ceil(rating) : rating;
-  // console.log("rating", rating)
-  // console.log("numberOfStars", numberOfStars)
+  const newRating = createRatingStars(rating);
 
   let html = `
     <!-- left part -->
@@ -35,11 +59,7 @@ const getList = (result, idx)=>{
     <div class="item__middle">
       <h2>${name}</h2>
       <div class="item__middle--rating-${idx}">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-        <i class="far fa-star"></i>
+        ${newRating}
         <span>${reviews}</span>
         <span>reviews</span>
       </div>
@@ -91,35 +111,14 @@ const getList = (result, idx)=>{
       </button>
     </div>
   `;
-  // const span = document.createElement('span');
-  // const ratingDiv = $(`.item__middle--rating-${idx}`);
-  // if (numberOfStars < 5) {
-  //   const remainingStars = 5 - Math.ceil(rating);
-  //   console.log("remainingStars", remainingStars)
-  //   Array.from({length: remainingStars}, (v, i) => {
-  //     console.log('sasasasasasasa')
-  //     span.prepend(`<i class="far fa-star"></i>`)
-  //   });
-  // } 
-  // if (isFloat) {
-  //   span.prepend(`<i class="fas fa-star-half-alt"></i>`)
-  // }
-  // Array.from({length: numberOfStars}, (v, i) => {
-  //   console.log('stars!')
-
-  //   span.prepend(`<i class="fas fa-star"></i>`)
-    
-  // });
-  // ratingDiv.prepend(span)
-  // console.log("ratingDiv", ratingDiv)
 
   return html;
 }
 
 const toursLoop = (sortedTours) => {
   tours = sortedTours ? sortedTours : tours.sort((a, b)=>{
-    var x = a.dates[0] && a.dates[0]["eur"]
-    var y = b.dates[0] && b.dates[0]["eur"]
+    var x = a.dates[0] && a.dates[0]["eur"];
+    var y = b.dates[0] && b.dates[0]["eur"];
     return x>y ? -1 : x<y ? 1 : 0;
   });
   tours.map((result, idx)=> {
@@ -145,11 +144,14 @@ const fetchData = () => {
   });
 }
 
+$(document).ready(function(){
   fetchData();
+})
+
 
 /* Events */
-$('#filterBy').on('change', (event)=> {
-  const val = event.target.value;
+$('#filterBy').on('change', (e)=> {
+  const val = e.target.value;
   const dateVal = moment(val).format('YYYY-MM');
   const filteredTours = [];
   tours.forEach(tour=> {
@@ -160,8 +162,8 @@ $('#filterBy').on('change', (event)=> {
   toursLoop(filteredTours);
 });
 
-$('#sortBy').on('change', (event)=> {
-  const val = event.target.value;
+$('#sortBy').on('change', (e)=> {
+  const val = e.target.value;
   let sortedTours = [];
   switch (val) {
     case "1":
