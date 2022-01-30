@@ -6,7 +6,7 @@ const wrapper = document.getElementById('wrapper');
 const url = 'https://mocki.io/v1/11356aa2-6371-41d4-9d49-77a5e9e9924f';
 
 
-const getList = (result)=>{
+const getList = (result, idx)=>{
   const { cities, dates, description, images, length, length_type, 
     name, operator_name, rating, reviews } = result;
 
@@ -20,6 +20,10 @@ const getList = (result)=>{
   const last_availability = dates[dates.length-1] && dates[dates.length-1]["availability"] && dates[dates.length-1]["availability"];
   const start_Date = moment(dates[0] && dates[0]["start"]).format('D MMM YYYY');
   const end_Date = moment(dates[dates.length - 1] && dates[dates.length - 1]["start"]).format('D MMM YYYY');
+  // const isFloat = rating % 1 !== 0
+  // const numberOfStars = isFloat ? Math.ceil(rating) : rating;
+  // console.log("rating", rating)
+  // console.log("numberOfStars", numberOfStars)
 
   let html = `
     <!-- left part -->
@@ -30,7 +34,7 @@ const getList = (result)=>{
     <!-- middle part -->
     <div class="item__middle">
       <h2>${name}</h2>
-      <div class="item__middle--rating">
+      <div class="item__middle--rating-${idx}">
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
@@ -87,6 +91,28 @@ const getList = (result)=>{
       </button>
     </div>
   `;
+  // const span = document.createElement('span');
+  // const ratingDiv = $(`.item__middle--rating-${idx}`);
+  // if (numberOfStars < 5) {
+  //   const remainingStars = 5 - Math.ceil(rating);
+  //   console.log("remainingStars", remainingStars)
+  //   Array.from({length: remainingStars}, (v, i) => {
+  //     console.log('sasasasasasasa')
+  //     span.prepend(`<i class="far fa-star"></i>`)
+  //   });
+  // } 
+  // if (isFloat) {
+  //   span.prepend(`<i class="fas fa-star-half-alt"></i>`)
+  // }
+  // Array.from({length: numberOfStars}, (v, i) => {
+  //   console.log('stars!')
+
+  //   span.prepend(`<i class="fas fa-star"></i>`)
+    
+  // });
+  // ratingDiv.prepend(span)
+  // console.log("ratingDiv", ratingDiv)
+
   return html;
 }
 
@@ -96,10 +122,10 @@ const toursLoop = (sortedTours) => {
     var y = b.dates[0] && b.dates[0]["eur"]
     return x>y ? -1 : x<y ? 1 : 0;
   });
-  tours.map((result)=> {
+  tours.map((result, idx)=> {
     const item = document.createElement('li');
     item.className = 'item';
-    const html = getList(result);
+    const html = getList(result, idx);
     item.innerHTML = html;
     wrapper.append(item);
   });
@@ -119,7 +145,7 @@ const fetchData = () => {
   });
 }
 
-fetchData();
+  fetchData();
 
 /* Events */
 $('#filterBy').on('change', (event)=> {
@@ -129,7 +155,9 @@ $('#filterBy').on('change', (event)=> {
   tours.forEach(tour=> {
     const filtered = tour.dates.filter(date=> date.start.includes(dateVal));
     filtered.length > 0 && filteredTours.push(tour)
-  })
+  });
+  wrapper.innerHTML = "";
+  toursLoop(filteredTours);
 });
 
 $('#sortBy').on('change', (event)=> {
