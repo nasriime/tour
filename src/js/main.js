@@ -41,12 +41,14 @@ const getList = (result)=>{
 
   const destinations = cities.map(city=> city.name); 
   const showCities = destinations.slice(0,2);
-  const moreCities = destinations.length > 2 ? ` +${destinations.length - 2} more` : ' ';
+  const moreCities = destinations.length > 2 ?
+   `<span class="item__middle--more"> +${destinations.length - 2} more</span>` : ' ';
   const is_primary_image = images.filter(image=> image.is_primary === true);
   const image = is_primary_image.length > 0 && is_primary_image[0]['url'] ?
    is_primary_image[0]['url'] : "http://placehold.it/232x170";
   const first_availability = dates[0] && dates[0]["availability"] && dates[0]["availability"];
-  const last_availability = dates[dates.length-1] && dates[dates.length-1]["availability"] && dates[dates.length-1]["availability"];
+  const last_availability = 
+    dates[dates.length-1] && dates[dates.length-1]["availability"] && dates[dates.length-1]["availability"];
   const start_Date = moment(dates[0] && dates[0]["start"]).format('D MMM YYYY');
   const end_Date = moment(dates[dates.length - 1] && dates[dates.length - 1]["start"]).format('D MMM YYYY');
   const newRating = createRatingStars(rating);
