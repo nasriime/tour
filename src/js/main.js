@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { options } from './utils';
+import { filtersOptions, sortOptions } from './utils';
 
 
 let tours = [];
@@ -146,10 +146,15 @@ const fetchData = () => {
 }
 
 const fillOptions=()=>{
-  const selectElement = document.getElementById("filterBy");
-  options.forEach(({text, value})=>{
-    selectElement.add(new Option(text, value));
-  })
+  const filterSelect = document.getElementById("filterBy");
+  const sortSelect = document.getElementById("sortBy");
+  
+  filtersOptions.forEach(({text, value})=>{
+    filterSelect.add(new Option(text, value));
+  });
+  sortOptions.forEach(({text, value})=>{
+    sortSelect.add(new Option(text, value));
+  });
 }
 
 $(document).ready(function(){

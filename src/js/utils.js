@@ -1,4 +1,4 @@
-export const options =[
+export const filtersOptions = [
     {value: "01 January 2016", text: "January 2016"},
     {value: "01 February 2016", text: "February 2016"},
     {value: "01 March 2016", text: "March2016"},
@@ -37,4 +37,11 @@ export const options =[
     {value: "01 October 2018", text: "October2018"},
     {value: "01 November 2018", text: "November2018"},
     {value: "01 December 2018", text: "December2018"},
+];
+
+export const sortOptions =[
+    {value: "1", text: "Heighest price"},
+    {value: "2", text: "Lowest price"},
+    {value: "3", text: "Longest tour"},
+    {value: "4", text: "Shortest tour"},
 ];
