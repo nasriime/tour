@@ -59,24 +59,23 @@ const getList = (result)=>{
     </div>
     <!-- middle part -->
     <div class="item__middle">
-      <h2>${name}</h2>
+      <h4 class="item__middle--title">${name}</h4>
       <div class="item__middle--rating">
         ${newRating}
-        <span>${reviews ? reviews : 0}</span>
-        <span>reviews</span>
+        <span class="item__middle--reviews">${reviews ? reviews : 0} reviews</span>
       </div>
-      <blockquote class="item__middle--review">${description.slice(0,100)}...</blockquote>
+      <blockquote class="item__middle--blockquote">"${description.slice(0,100)}..."</blockquote>
       <div class="item__middle--info">
         <div>
-          <span class="item__middle--info-label">Destinations</span>
+          <span>Destinations</span>
           <span>${showCities}${moreCities}</span>
         </div>
         <div>
-          <span class="item__middle--info-label">starts/ends in</span>
+          <span>starts/ends in</span>
           <span>${cities[0]["name"]}/${cities[cities.length-1]["name"]}</span>
         </div>
         <div>
-          <span class="item__middle--info-label">operator</span>
+          <span>operator</span>
           <span>${operator_name}</span>
         </div>
       </div>
@@ -146,8 +145,8 @@ const fetchData = () => {
   });
 }
 
-const fillOption=()=>{
-  const selectElement =  document.getElementById("filterBy");
+const fillOptions=()=>{
+  const selectElement = document.getElementById("filterBy");
   options.forEach(({text, value})=>{
     selectElement.add(new Option(text, value));
   })
@@ -155,7 +154,7 @@ const fillOption=()=>{
 
 $(document).ready(function(){
   fetchData();
-  fillOption();
+  fillOptions();
 });
 
 

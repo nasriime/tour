@@ -82,16 +82,60 @@ body {
   margin: 0px 20px 0px;
   max-width: 500px;
 
+  &--title{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 22px;
+    margin: 0;
+    color: #2c3e50;
+    max-height: 44px;
+    overflow-y: hidden;
+  }
+
   &--info{
-    border-top: 1px solid #000;
+    border-top: 1px solid #ebeef2;
     padding-top: 15px;
-    &-label{
-      display: inline-block;
-      min-width: 110px;
+    margin: 12px 0 0;
+
+    div > span{
+      &:first-child{
+        display: inline-block;
+        width: 33%;
+        margin: 0 0 4px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #2c3e50;
+        vertical-align: top;
+      }
+      &:last-child{
+        display: inline-block;
+        width: 66%;
+        margin: 0 0 4px;
+        vertical-align: top;
+        font-size: 12px;
+      }
     }
+  }
+  &--reviews{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #818d99;
+    line-height: 12px;
+    margin-left: 4px;
+  }
+  &--blockquote{
+    font-size: 12px;
+    line-height: 16px;
+    margin: 8px 0 0;
+    word-break: break-word;
+    font-style: italic;
+    color: #2c3e50;
   }
   .fa-star, .fa-star-half-alt {
     color: #ffc102;
+    margin-right: 1px;
+    font-size: 13px;
   }
 }
 
