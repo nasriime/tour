@@ -33,7 +33,7 @@ const createRatingStars = (rating)=>{
   return ratingDiv;
 }
 
-const getList = (result, idx)=>{
+const getList = (result)=>{
   const { cities, dates, description, images, length, length_type, 
     name, operator_name, rating, reviews } = result;
 
@@ -58,9 +58,9 @@ const getList = (result, idx)=>{
     <!-- middle part -->
     <div class="item__middle">
       <h2>${name}</h2>
-      <div class="item__middle--rating-${idx}">
+      <div class="item__middle--rating">
         ${newRating}
-        <span>${reviews}</span>
+        <span>${reviews ? reviews : 0}</span>
         <span>reviews</span>
       </div>
       <blockquote class="item__middle--review">${description.slice(0,100)}...</blockquote>
@@ -121,10 +121,10 @@ const toursLoop = (sortedTours) => {
     var y = b.dates[0] && b.dates[0]["eur"];
     return x>y ? -1 : x<y ? 1 : 0;
   });
-  tours.map((result, idx)=> {
+  tours.map(result=> {
     const item = document.createElement('li');
     item.className = 'item';
-    const html = getList(result, idx);
+    const html = getList(result);
     item.innerHTML = html;
     wrapper.append(item);
   });
