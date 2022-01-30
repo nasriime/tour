@@ -1,4 +1,6 @@
 import moment from 'moment';
+import { options } from './utils';
+
 
 let tours = [];
 const wrapper = document.getElementById('wrapper');
@@ -144,9 +146,17 @@ const fetchData = () => {
   });
 }
 
+const fillOption=()=>{
+  const selectElement =  document.getElementById("filterBy");
+  options.forEach(({text, value})=>{
+    selectElement.add(new Option(text, value));
+  })
+}
+
 $(document).ready(function(){
   fetchData();
-})
+  fillOption();
+});
 
 
 /* Events */
