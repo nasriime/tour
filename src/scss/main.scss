@@ -144,7 +144,6 @@ body {
   width: 200px;
   margin-right: 8px;
   margin-left: 8px;
-  padding-top: 24px;
 
   &--saving{
     width: 0;
@@ -181,6 +180,60 @@ body {
   }
   &--period{
     display: flex;
+    border-top: 1px solid #ebeef2;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  &--days{
+    display: flex;
+    &-title{
+      font-size: 12px;
+      line-height: 14px;
+      margin: 0;
+      color: #818d99;
+    }
+    &-length{
+      font-size: 14px;
+      margin-top: 2px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      line-height: 14px;
+    }
+  }
+  &--price{
+    display: flex;
+    &-title{
+      font-size: 14px;
+      line-height: 17px;
+      margin: 0;
+    }
+    &-start{
+      color: #41c4ab;
+      font-size: 24px;
+      line-height: 29px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+  }
+  &--availability{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+
+    span{
+      &:first-of-type{
+        font-size: 12px;
+        line-height: 14px;
+        margin: 0;
+        color: #818d99;
+      }
+      &:last-of-type{
+        font-size: 12px;
+        line-height: 14px;
+        margin: 0;
+      }
+    }
   }
   &--btn{
     background: #f39a2d;
@@ -190,6 +243,7 @@ body {
     padding: 10.5px 8px;
     font-weight: 700;
     border-radius: 3px;
+    margin-top: 20px;
     cursor: pointer;
     span{
       margin-right: 5px;

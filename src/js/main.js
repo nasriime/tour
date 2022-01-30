@@ -89,22 +89,22 @@ const getList = (result)=>{
       </div>
       <div class="item__right--duration">
         <div class="item__right--days">
-          <span>Duration</span>
-          <span>${length} days</span>
+          <span class="item__right--days-title">Duration</span>
+          <span class="item__right--days-length">${length} days</span>
         </div>
         <div class="item__right--price">
-          <span>From</span>
-          <span>€${dates[0] && dates[0]["eur"] || 1}</span>
+          <span class="item__right--price-title">From</span>
+          <span class="item__right--price-start">€${dates[0] && dates[0]["eur"] || 1}</span>
         </div>
       </div>
       <div class="item__right--period">
-        <div class="item__right--availability-from">
-          <h6>${start_Date}</h6>
-          <h6>${first_availability}+ sapces left</h6>
+        <div class="item__right--availability">
+          <span>${start_Date}</span>
+          <span>${first_availability}+ sapces left</span>
         </div>
-        <div class="item__right--availability-to">
-          <h6>${end_Date}</h6>
-          <h6>${last_availability}+ sapces left</h6>
+        <div class="item__right--availability">
+          <span>${end_Date}</span>
+          <span>${last_availability}+ sapces left</span>
         </div>
       </div>
       <button class="item__right--btn">

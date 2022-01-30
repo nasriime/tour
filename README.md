@@ -1,12 +1,7 @@
-[![Build Status](https://travis-ci.org/harishekhar/scss-jquery-boilerplate.svg?branch=master)](https://travis-ci.org/harishekhar/scss-jquery-boilerplate) [![Github All Releases](https://img.shields.io/github/downloads/harishekhar/scss-jquery-boilerplate/total.svg)]()
 
-# SCSS jQuery Boilerplate
+# Tour
 
-**Start your interview assignment/prototype in seconds**
-
-Readymade boilerplate to start interview assignment with configured SCSS, Babel loaders and jQuery library.
-
-An Easy way to start jQuery/SCSS project with Bebel and Webpack.
+**App shows a list of tours**
 
 ## Features
 
@@ -26,5 +21,3 @@ An Easy way to start jQuery/SCSS project with Bebel and Webpack.
 - `npm install` - Install all dependencies
 - `npm run start` - Start your webpack-server
 - `npm run build` - Create build files with compiled SCSS and bundled jQuery
-
-MIT © Hari Shekhar
