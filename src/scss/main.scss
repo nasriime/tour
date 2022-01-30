@@ -64,6 +64,12 @@ body {
   background: #fff;
   padding: 3px;
   margin-bottom: 30px;
+
+  @media(max-width: 777px){
+    max-width: 428px;
+    margin: 0 auto 30px;
+    padding: 0 0 20px 0;
+  }
 }
 
 .item__left{
@@ -71,6 +77,14 @@ body {
   img{
     width: 250px;
     height: 225px;
+  }
+
+  @media(max-width: 777px){
+    width: 100%;
+    img{
+      width: 100%;
+      height: auto;
+    }
   }
 
   &--like{
@@ -113,6 +127,10 @@ body {
         font-weight: 700;
         color: #2c3e50;
         vertical-align: top;
+
+        @media(max-width: 777px){
+          width: 32%;
+        }
       }
       &:last-child{
         display: inline-block;
@@ -151,6 +169,10 @@ body {
   width: 200px;
   margin-right: 8px;
   margin-left: 8px;
+
+  @media(max-width: 777px){
+    width: 100%;
+  }
 
   &--saving{
     width: 0;
