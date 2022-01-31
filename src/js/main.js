@@ -159,12 +159,10 @@ const fillOptions=()=>{
   });
 }
 
-$(document).ready(function(){
   fetchData();
   fillOptions();
-});
 
-
+  
 /* Events */
 $('#filterBy').on('change', (e)=> {
   const val = e.target.value;
