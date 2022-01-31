@@ -102,11 +102,11 @@ const getList = (result)=>{
       <div class="item__right--period">
         <div class="item__right--availability">
           <span>${start_Date}</span>
-          <span>${first_availability}+ sapces left</span>
+          <span>${first_availability ? `${first_availability}` : 'Many'} spaces left</span>
         </div>
         <div class="item__right--availability">
           <span>${end_Date}</span>
-          <span>${last_availability}+ sapces left</span>
+          <span>${last_availability ? `${last_availability}` : 'Many'} spaces left</span>
         </div>
       </div>
       <button class="item__right--btn">

@@ -14,16 +14,23 @@ body {
 }
 
 .filters{
-  text-align: right;
+  display: flex;
+  justify-content: end;
+
 
   .filters--wrapper{
     position:relative;
+
+    +.filters--wrapper{
+      margin-left: 5px;
+    }
+    
     &:before {
       content: "\f078";  
       font-family: "Font Awesome 5 Free";
       right:10px;
       position:absolute;
-      top:0;
+      top: 8px;
       font-weight:700;
       color: #818d99;
    }
@@ -126,7 +133,7 @@ body {
         margin: 0 0 4px;
         font-size: 12px;
         font-weight: 700;
-        color: #2c3e50;
+        color:#818d99;
         vertical-align: top;
 
         @media(max-width: 777px){
@@ -186,8 +193,8 @@ body {
     border-style: solid;
     border-width: 0 45px 45px 0;
     position: absolute;
-    right: 1px;
-    top: 1px;
+    right: -8px;
+    top: 0px;
 
     div{
       text-align: center;
