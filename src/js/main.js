@@ -119,12 +119,12 @@ const getList = (result)=>{
 }
 
 const toursLoop = (sortedTours) => {
-  tours = sortedTours ? sortedTours : tours.sort((a, b)=>{
+  const newTours = sortedTours ? sortedTours : tours.sort((a, b)=>{
     var x = a.dates[0] && a.dates[0]["eur"];
     var y = b.dates[0] && b.dates[0]["eur"];
     return x>y ? -1 : x<y ? 1 : 0;
   });
-  tours.map(result=> {
+  newTours.map(result=> {
     const item = document.createElement('li');
     item.className = 'item';
     const html = getList(result);
