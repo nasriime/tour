@@ -22,19 +22,21 @@ body {
 
 
   .filters__wrapper{
+    +.filters__wrapper{
+      margin-left: 5px;
+    }
     @media(max-width: 407px){
 
       &:first-of-type{
         order: 2;
+        margin-left: 2px;
       }
       &:last-of-type{
         order: 1;
+        margin-right: 2px;
+        margin-left: 0px;
       }
     }
-    +.filters__wrapper{
-      margin-left: 5px;
-    }
-    
    label{
     color: #818d99;
     @media(max-width: 407px){
