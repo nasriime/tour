@@ -110,7 +110,7 @@ const getList = (result)=>{
         </div>
       </div>
       <button class="item__right--btn">
-        <span>view tour</span><i class="fas fa-chevron-right"></i>
+        <span>View tour</span><i class="fas fa-chevron-right"></i>
       </button>
     </div>
   `;

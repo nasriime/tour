@@ -16,26 +16,51 @@ body {
 .filters{
   display: flex;
   justify-content: end;
+  @media(max-width: 407px){
+    justify-content: space-around;
+  }
 
 
-  .filters--wrapper{
-    position:relative;
+  .filters__wrapper{
+    @media(max-width: 407px){
 
-    +.filters--wrapper{
+      &:first-of-type{
+        order: 2;
+      }
+      &:last-of-type{
+        order: 1;
+      }
+    }
+    +.filters__wrapper{
       margin-left: 5px;
     }
     
-    &:before {
-      content: "\f078";  
-      font-family: "Font Awesome 5 Free";
-      right:10px;
-      position:absolute;
-      top: 8px;
-      font-weight:700;
-      color: #818d99;
-   }
    label{
     color: #818d99;
+    @media(max-width: 407px){
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+   }
+
+   .select__wrapper{
+    position:relative;
+    @media(max-width: 407px){
+      display: inline-block;
+      width: 100%;
+      select{
+        width: 100%!important;
+      }
+    }
+    i{
+      position:absolute;
+      right:10px;
+      top: 2px;
+      color: #818d99;
+      @media(max-width: 407px){
+        top: 13px;
+      }
+    }
    }
   }
 
@@ -109,7 +134,7 @@ body {
 .item__middle{
   margin: 0px 20px 0px;
   max-width: 500px;
-  padding-top: 15px;
+  padding-top: 20px;
 
   &--title{
     font-size: 18px;
@@ -130,7 +155,7 @@ body {
       &:first-child{
         display: inline-block;
         width: 33%;
-        margin: 0 0 4px;
+        margin: 0 0 6px;
         font-size: 12px;
         font-weight: 700;
         color:#818d99;
@@ -168,6 +193,8 @@ body {
   &--more{
     color: #41c4ab;
     font-weight: 600;
+    margin-left: 2px;
+    vertical-align: revert;
   }
   .fa-star, .fa-star-half-alt {
     color: #ffc102;
@@ -283,6 +310,7 @@ body {
     width: 100%;
     border: 1px solid #f39a2d;
     padding: 10.5px 8px;
+    font-size: 14px;
     font-weight: 700;
     border-radius: 3px;
     margin-top: 20px;
@@ -295,7 +323,7 @@ body {
     i{
       position: absolute;
       top: 12px;
-      right: 13px;
+      right: 8px;
     }
     span{
       margin-right: 5px;

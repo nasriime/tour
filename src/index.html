@@ -7,13 +7,19 @@
 <body>
 	<div class="container">
 		<div class="filters">
-			<span class="filters--wrapper">
+			<span class="filters__wrapper">
 				<label for="filterBy">Filter by</label>
-				<select  name="filterBy" id="filterBy"></select>
+				<span class="select__wrapper">
+					<i class="fas fa-chevron-down"></i>
+					<select  name="filterBy" id="filterBy"></select>
+				</span>
 			</span>
-			<span class="filters--wrapper">
+			<span class="filters__wrapper">
 				<label for="sortBy">Sort by</label>
-				<select  name="sortBy" id="sortBy"></select>
+				<span class="select__wrapper">
+					<i class="fas fa-chevron-down"></i>
+					<select  name="sortBy" id="sortBy"></select>
+				</span>
 			</span>
 		</div>
 		<ul id="wrapper"></ul>
